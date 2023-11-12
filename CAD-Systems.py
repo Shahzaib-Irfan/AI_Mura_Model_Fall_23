@@ -48,3 +48,15 @@ model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.Flatten())
 model.add(layers.Dense(64, activation='relu'))
 model.add(layers.Dense(1, activation='sigmoid'))
+
+
+model.compile(optimizer='adam',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+
+model.fit(X_train, y_train, epochs=10, validation_data=(X_val, y_val))
+
+train_loss, train_acc = model.evaluate(X_train, y_train)
+print(f'Train Accuracy: {train_acc}, Train Loss: {train_loss}')
+
+model.save('mura_fracture_detection_model.h5')
