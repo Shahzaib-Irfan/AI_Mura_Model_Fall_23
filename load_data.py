@@ -11,4 +11,8 @@ class Data(object):
             • train_labels_data : returns the instance of labeled training data.
             • valid_labels_data : returns the instance of labeled validation data.
     """
-    
+        
+    @property
+    def train_df(self):
+        return pd.read_csv('../MURA-v1.1/train_image_paths.csv', header=None, 
+                           names=['FilePath'])
