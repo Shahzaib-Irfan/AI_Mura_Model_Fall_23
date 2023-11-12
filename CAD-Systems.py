@@ -37,3 +37,14 @@ X_val, Xv_test, y_val, yv_test = train_test_split(Xv, yv_encoded, test_size=0.2,
 X_train = X_train.reshape(-1, 100, 100, 1)
 X_test = X_test.reshape(-1, 100, 100, 1)
 X_val = X_val.reshape(-1, 100, 100, 1)
+
+
+model = models.Sequential()
+model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(100, 100, 1)))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.Flatten())
+model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(1, activation='sigmoid'))
