@@ -43,4 +43,19 @@ class SingularDataframe(object):
         train_df.set_index(["FilePath", "Label"]).count(level="Label")
         
         return valid_df, train_df
+    
+            
+    @property
+    def df_paths_adjusted(self):
+        """
+            Return the dataframes, but with the path ../ adjusted in it.
+        """
+        valid_df,train_df = self.labeled_train
+        train_df['FilePath'] = train_df.apply(lambda f: '../'+f.FilePath, axis=1)
+        valid_df['FilePath'] = valid_df.apply(lambda f: '../'+f.FilePath, axis=1)
+        return valid_df, train_df
         
+if __name__ == '__main__':
+    df = SingularDataframe()
+    v,t = df.labeled_train
+    print(v.head(1))
